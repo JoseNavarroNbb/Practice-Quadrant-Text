@@ -1,5 +1,5 @@
 package com.example.practicequadranttext
-
+// Importaciones necesarias para la aplicación Android
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -24,19 +24,20 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.practicequadranttext.ui.theme.PracticeQuadrantTextTheme
 
-
-
+// Clase principal que hereda de ComponentActivity para la actividad principal de Android
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Establecer el contenido de la actividad con la función setContent de Compose
         setContent {
             PracticeQuadrantTextTheme {
-                // A surface container using the 'background' color from the theme
+                // Crear un contenedor Surface que ocupa toda la pantalla
                 Surface(
                     modifier = Modifier.fillMaxSize(),
+                    // El color del fondo es obtenido del tema MaterialTheme
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    //Greeting("Android")
+                    // Llamar a la función ComposeQuadrantApp para construir la interfaz de usuario
                     ComposeQuadrantApp()
                 }
             }
@@ -44,16 +45,21 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+// Función principal para construir la interfaz de usuario con Compose
 @Composable
 fun ComposeQuadrantApp() {
+    // Columna principal que contiene dos filas de tarjetas
     Column(Modifier.fillMaxWidth()) {
+        // Primera fila de tarjetas
         Row(Modifier.weight(1f)) {
+            // Llamar a la función ComposableInfoCard para mostrar la primera tarjeta
             ComposableInfoCard(
                 title = stringResource(R.string.first_title),
                 description = stringResource(R.string.first_description),
                 backgroundColor = Color(0xFFEADDFF),
                 modifier = Modifier.weight(1f)
             )
+            // Llamar a la función ComposableInfoCard para mostrar la segunda tarjeta
             ComposableInfoCard(
                 title = stringResource(R.string.second_title),
                 description = stringResource(R.string.second_description),
@@ -61,13 +67,16 @@ fun ComposeQuadrantApp() {
                 modifier = Modifier.weight(1f)
             )
         }
+        // Segunda fila de tarjetas
         Row(Modifier.weight(1f)) {
+            // Llamar a la función ComposableInfoCard para mostrar la tercera tarjeta
             ComposableInfoCard(
                 title = stringResource(R.string.third_title),
                 description = stringResource(R.string.third_description),
                 backgroundColor = Color(0xFFB69DF8),
                 modifier = Modifier.weight(1f)
             )
+            // Llamar a la función ComposableInfoCard para mostrar la cuarta tarjeta
             ComposableInfoCard(
                 title = stringResource(R.string.fourth_title),
                 description = stringResource(R.string.fourth_description),
@@ -78,6 +87,7 @@ fun ComposeQuadrantApp() {
     }
 }
 
+// Función privada para mostrar una tarjeta de información
 @Composable
 private fun ComposableInfoCard(
     title: String,
@@ -85,6 +95,7 @@ private fun ComposableInfoCard(
     backgroundColor: Color,
     modifier: Modifier = Modifier
 ) {
+    // Columna que representa la tarjeta, con fondo y relleno específicos
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -93,11 +104,13 @@ private fun ComposableInfoCard(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        // Texto del título con estilo negrita
         Text(
             text = title,
             modifier = Modifier.padding(bottom = 16.dp),
             fontWeight = FontWeight.Bold
         )
+        // Texto de la descripción justificado en el centro
         Text(
             text = description,
             textAlign = TextAlign.Justify
@@ -105,6 +118,7 @@ private fun ComposableInfoCard(
     }
 }
 
+// Función de vista previa para ComposeQuadrantApp
 @Preview(showBackground = true)
 @Composable
 fun ComposeQuadrantAppPreview() {
